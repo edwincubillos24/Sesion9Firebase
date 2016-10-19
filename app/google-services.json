@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "323141616836",
+    "firebase_url": "https://agenda-70dc5.firebaseio.com",
+    "project_id": "agenda-70dc5",
+    "storage_bucket": "agenda-70dc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323141616836:android:94695c37e82d1376",
+        "android_client_info": {
+          "package_name": "com.edwinacubillos.sesion9firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323141616836-rjgpcgcdn0onr9edkfg8gludq8geemcs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edwinacubillos.sesion9firebase",
+            "certificate_hash": "53E2FAC6A71DE8A94CB7AA8D9E11FE0DC29EF839"
+          }
+        },
+        {
+          "client_id": "323141616836-tt22ku1ut2qiao73c5tt3ujfds3tis63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhWUFBLPItxUpn5lngMNXxr3dBA8e48dA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323141616836-tt22ku1ut2qiao73c5tt3ujfds3tis63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

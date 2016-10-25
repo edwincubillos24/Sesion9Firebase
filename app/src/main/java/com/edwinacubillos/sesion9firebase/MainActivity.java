@@ -1,5 +1,6 @@
 package com.edwinacubillos.sesion9firebase;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button bInsertar, bActualizar, bBorrar, bBuscar,bLimpiar;
     Integer id=0;
 
+    ArrayList<Contacto> info; //Arreglo para almacenar los datos de Firebase
+
     private String FIREBASE_URL="https://agenda-28d7f.firebaseio.com/";
     private Firebase firebasedatos;
 
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        info = new ArrayList<Contacto>();
 
         Firebase.setAndroidContext(this);
         firebasedatos = new Firebase(FIREBASE_URL);
@@ -67,12 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 eCorreo.setText("");
                 eId.setText("");
                 break;
+
             case R.id.bInsertar:
                 Contacto contacto = new Contacto(nombre,telefono,correo,String.valueOf(id));
                 firebd = firebasedatos.child("contacto "+id);
                 firebd.setValue(contacto);
                 id++;
                 break;
+
             case R.id.bActualizar:
                 firebd = firebasedatos.child("contacto "+codigo);
 
@@ -88,31 +96,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 nuevonombre.put("mail",correo);
                 firebd.updateChildren(nuevocorreo);
 
-
                 break;
+
             case R.id.bBorrar:
                 firebd = firebasedatos.child("contacto "+codigo);
                 firebd.removeValue();
                 break;
+
             case R.id.bBuscar:
                 final String code = "contacto "+codigo;
                 firebasedatos.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(code).exists()){
+                            info.add(dataSnapshot.child("contacto "+codigo).getValue(Contacto.class));
                             Log.d("data",dataSnapshot.child(code).getValue().toString());
+                            eNombre.setText(info.get(0).getNombre());
+                            eTelefono.setText(info.get(0).getTelefono());
+                            eCorreo.setText(info.get(0).getMail());
                         }
-
                     }
-
                     @Override
                     public void onCancelled(FirebaseError firebaseError) {
-
                     }
                 });
                 break;
-
         }
-
     }
 }

@@ -11,7 +11,7 @@ public class Contacto {
     public Contacto() {
     }
 
-    public Contacto(String nombre, String telefono, String mail, String id) {
+    public Contacto(String nombre, String id,String telefono, String mail) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.mail = mail;
